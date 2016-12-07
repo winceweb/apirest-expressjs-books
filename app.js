@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 
+var cors = require('cors');
+
+
 var auth = require('./routes/auth');
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,7 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors());
 
 // API ROUTES -------------------
 
