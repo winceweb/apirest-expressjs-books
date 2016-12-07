@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var booksApi = require('../models/Books.js');
+var booksApi = require('../models/Book.js');
 
 /* GET /books-api listing. */
 router.get('/', function(req, res, next) {

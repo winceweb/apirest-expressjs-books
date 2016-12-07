@@ -5,7 +5,7 @@ var config = require('../config');
 var jwt = require('jsonwebtoken');
 
 var mongoose = require('mongoose');
-var User = require('../models/Users.js');
+var User = require('../models/User.js');
 
 router.post('/', function(req, res) {
   // find the user
@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
 
         // if user is found and password is right
         // create a token
-        var token = jwt.sign(user, config.secret, {});
+        var token = jwt.sign(user._id, config.secret, {});
 
         // return the information including token as JSON
         res.json({

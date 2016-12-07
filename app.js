@@ -9,8 +9,8 @@ var jwt = require('jsonwebtoken');
 var auth = require('./routes/auth');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var bookApi = require('./routes/book');
-var seeders = require('./routes/seeder');
+var bookApi = require('./routes/books');
+var seeders = require('./routes/seeders');
 
 var config = require('./config');
 
@@ -37,6 +37,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API ROUTES -------------------
 
 app.use('/auth', auth);
+app.use('/seeders', seeders);
+
+app.use('/', index);
+app.use('/users', users);
+app.use('/books', bookApi);
 
 // route middleware to verify a token
 app.use(function(req, res, next) {
@@ -70,10 +75,8 @@ app.use(function(req, res, next) {
   }
 });
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/book', bookApi);
-app.use('/seeder', seeders);
+
+
 
 
 
@@ -93,7 +96,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json('error');
 });
 
 module.exports = app;
